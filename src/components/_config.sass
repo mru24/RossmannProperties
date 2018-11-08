@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600')
+@import url('https://fonts.googleapis.com/css?family=Anton')
+
+// MIXINS
+@mixin bp-mobile
+  @media only screen and (max-width: 1050px)
+    @content
+
+@mixin bp-mobileSM
+  @media only screen and (max-width: 750px)
+    @content
+
+@mixin transition
+  transition: .4s
+
+// Colors
+$orange: #ff9213
+$blue: #364ff6
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+body
+  font-family: 'Montserrat', sans-serif
+  font-weight: 400
+
+.container
+  width: 80%
+  margin: auto
+  @include bp-mobile
+    width: 90%
+
+.banner
+  height: 55vw
+  background-color: white
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: bottom left
+  padding: 50px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  @include bp-mobile
+    height: 600px
+  h1
+    font-size: 55px
+    text-shadow: 2px 2px 15px #444
+    font-weight: 600
+    color: white
+    letter-spacing: 2px
+    width: 55%
+
+a, a:active, a:visited
+  text-decoration: none
+  color: inherit
+
+button
+  cursor: pointer
+  padding: 15px 30px
+  background: $orange
+  color: white
+  font-size: 19px
+  letter-spacing: 2px
+  border: none
+  border-radius: 30px
+  transition: .3s
+  &:hover
+    background: $blue
+
+h2.title
+  font-size: 38px
+  color: black
+  text-align: center
+  margin: 60px 0
+  span
+    color: $orange
+
+.info
+  p
+    text-indent: 30px
