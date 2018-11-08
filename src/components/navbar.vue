@@ -5,6 +5,15 @@
         Rossmann
       </div>
       <div :class="navClassObject">
+        <ul>
+          <li v-for="(item, index) in navbar" :key="index" @mouseenter="item.hover=true" @mouseleave="item.hover=false">
+            <router-link :to="item.link" :class="[item.hover ? onHover : '']">
+              {{ item.name }}
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div :class="mobileNavClassObject">
         <transition name="mobileNav">
           <ul v-if="showNav">
             <li v-for="(item, index) in navbar" :key="index" @mouseenter="item.hover=true" @mouseleave="item.hover=false">
@@ -15,7 +24,7 @@
           </ul>
         </transition>
       </div>
-      <div class="hamburger" v-if="isActive">
+      <div class="hamburger">
         <hamburger v-on:changeNav="changeNav"/>
       </div>
     </nav>
@@ -38,11 +47,13 @@ export default {
       },
       navClassObject: {
         'nav': true,
-        'mobileNav': false,
         'collapseNav': false
       },
+      mobileNavClassObject: {
+        'mobileNav': true
+      },
       isActive: false,
-      showNav: true,
+      showNav: false,
       onHover: 'onHover',
       navbar: [
         {
@@ -74,20 +85,6 @@ export default {
     }
   },
   methods: {
-    makeMobile: function () {
-      this.logoClassObject.mobileLogo = true
-      this.navClassObject.mobileNav = true
-      this.navClassObject.collapseNav = false
-      this.logoClassObject.collapseLogo = false
-      this.isActive = true
-      this.showNav = false
-    },
-    makeDesktop: function () {
-      this.logoClassObject.mobileLogo = false
-      this.navClassObject.mobileNav = false
-      this.isActive = false
-      this.showNav = true
-    },
     changeNav: function () {
       this.showNav = !this.showNav
     },
@@ -111,18 +108,6 @@ export default {
         }
       }
     })
-    if (window.innerWidth < 750) {
-      self.makeMobile()
-    } else {
-      self.makeDesktop()
-    }
-    // window.addEventListener("resize", function () {
-    //   if (window.innerWidth < 750) {
-    //     self.makeMobile()
-    //   } else {
-    //     self.makeDesktop()
-    //   }
-    // })
   }
 }
 </script>
@@ -149,6 +134,8 @@ nav
   margin-right: 30px
   font-weight: 600
   @include transition
+  @include bp-mobile
+    display: none
   ul
     text-align: right
     li
@@ -169,9 +156,15 @@ nav
           margin: 0 8px
 
 .mobileNav
+  position: fixed
+  top: 0
+  left: 0
   width: 100%
   margin: auto
   font-weight: 600
+  display: none
+  @include bp-mobile
+    display: block
   ul
     text-align: center
     background: rgba(#0d8307, 0.9)
@@ -240,6 +233,8 @@ nav
   @include transition
   @include bp-mobile
     font-size: 28px
+    background: none
+    text-shadow: 0 0 15px #444
 
 .onHover
   transform: translateY(5px)
@@ -257,6 +252,9 @@ nav
   right: 10px
   width: 70px
   height: 70px
+  display: none
+  @include bp-mobile
+    display: block
 
 .mobileNav-enter-active, .mobileNav-leave-active
   transition: transform 1s

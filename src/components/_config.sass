@@ -56,6 +56,9 @@ a, a:active, a:visited
   text-decoration: none
   color: inherit
 
+ul
+  list-style: none
+
 button
   cursor: pointer
   padding: 15px 30px
@@ -69,13 +72,15 @@ button
   &:hover
     background: $blue
 
-h2.title
-  font-size: 38px
+.titleBK
   color: black
   text-align: center
   margin: 60px 0
   span
     color: $orange
+.titleWT
+  @extend .titleBK
+  color: white
 
 .info
   p

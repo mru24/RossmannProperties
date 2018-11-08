@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <h2 class="title">Our <span>Properties</span></h2>
+      <h2 class="titleBK">Our <span>Properties</span></h2>
       <div class="info">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -9,15 +9,17 @@
       </div>
       <div class="properties">
         <div class="item" v-for="(prop, index) in properties" :key='index'>
-          <img :src="prop.image">
+          <img :src="'static/images/' + prop.image">
           <div class="itemInfo">
             {{ prop.info }}
           </div>
+          <router-link :to="'/appointment'">
           <button>
-            <router-link :to="'appointment'">
+
               Book appointment
-            </router-link>
+
           </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -31,26 +33,30 @@ export default {
       properties: [
         {
           name: 'Burns Villas',
-          image: 'static/images/prop1.jpg',
+          image: 'prop1.jpg',
+          imageAlt: '',
           info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
           active: true
         },
         {
           name: 'Orchid House',
-          image: 'image to come',
-          info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+          image: 'prop2.jpg',
+          imageAlt: 'Photo by Benji Mellish from Pexels',
+          info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
           active: true
         },
         {
           name: 'Light Mansion',
-          image: 'image to come',
-          info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+          image: 'prop3.jpg',
+          imageAlt: 'Photo by Sarah Jane from Pexels',
+          info: 'Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           active: true
         },
         {
           name: 'Little House',
-          image: 'image to come',
-          info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+          image: 'prop4.jpg',
+          imageAlt: '',
+          info: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           active: true
         }
       ]
@@ -64,6 +70,9 @@ export default {
 
 .info
   margin: 30px auto
+
+.titleBK
+  font-size: 38px
 
 .properties
   display: flex
