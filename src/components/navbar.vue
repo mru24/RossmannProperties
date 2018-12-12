@@ -184,6 +184,7 @@ nav
   margin-right: 10px
   font-weight: 600
   width: 100%
+  background: green
   background: rgba(#383838, 0.3)
   @include transition
   ul
