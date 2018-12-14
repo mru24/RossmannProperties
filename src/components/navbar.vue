@@ -1,30 +1,17 @@
 <template>
   <div>
-    <nav>
-      <div :class="logoClassObject">
-        Rossmann
-      </div>
-      <div :class="navClassObject">
-        <ul>
-          <li v-for="(item, index) in navbar" :key="index" @mouseenter="item.hover=true" @mouseleave="item.hover=false">
-            <router-link :to="item.link" :class="[item.hover ? onHover : '']">
-              {{ item.name }}
-            </router-link>
+    <nav class="nav" :class="navClassObject">
+      <div class="navbar">
+        <div class="logo">
+          ROSSMAN
+        </div>
+        <ul :class="[ mobileShow ? 'mobileShow' : 'mobileHide' ]">
+          <li v-for="(item, index) in navbar" :key="index">
+            <router-link :to="item.link">{{ item.name }}</router-link>
           </li>
         </ul>
       </div>
-      <div :class="mobileNavClassObject">
-        <transition name="mobileNav">
-          <ul v-if="showNav">
-            <li v-for="(item, index) in navbar" :key="index" @mouseenter="item.hover=true" @mouseleave="item.hover=false">
-              <router-link :to="item.link" :class="[item.hover ? onHover : '']">
-                {{ item.name }}
-              </router-link>
-            </li>
-          </ul>
-        </transition>
-      </div>
-      <div class="hamburger">
+      <div class="hamburger" v-if="navClassObject.mobile">
         <hamburger v-on:changeNav="changeNav"/>
       </div>
     </nav>
@@ -40,21 +27,11 @@ export default {
   },
   data () {
     return {
-      logoClassObject: {
-        'logo': true,
-        'mobileLogo': false,
-        'collapseLogo': false
-      },
       navClassObject: {
-        'nav': true,
-        'collapseNav': false
+        'shrunk': false,
+        'mobile': false
       },
-      mobileNavClassObject: {
-        'mobileNav': true
-      },
-      isActive: false,
-      showNav: false,
-      onHover: 'onHover',
+      mobileShow: false,
       navbar: [
         {
           name: 'Home',
@@ -85,16 +62,17 @@ export default {
     }
   },
   methods: {
-    changeNav: function () {
-      this.showNav = !this.showNav
-    },
-    collapse: function () {
-      this.navClassObject.collapseNav = true
-      this.logoClassObject.collapseLogo = true
+    shrunk: function () {
+      this.navClassObject.shrunk = true
     },
     expand: function () {
-      this.navClassObject.collapseNav = false
-      this.logoClassObject.collapseLogo = false
+      this.navClassObject.shrunk = false
+    },
+    mobile: function () {
+      this.navClassObject.mobile = !this.navClassObject.mobile
+    },
+    changeNav: function () {
+      this.mobileShow = !this.mobileShow
     }
   },
   created () {
@@ -102,10 +80,26 @@ export default {
     window.addEventListener('scroll', function () {
       if (window.innerWidth > 750) {
         if (window.scrollY > 100) {
-          self.collapse()
+          self.shrunk()
         } else {
           self.expand()
         }
+      }
+    })
+    if (window.innerWidth < 1050) {
+      self.navClassObject.mobile = true
+      self.mobileShow = false
+    } else {
+      self.navClassObject.mobile = false
+      self.mobileShow = true
+    }
+    window.addEventListener('resize', function () {
+      if (window.innerWidth < 1050) {
+        self.navClassObject.mobile = true
+        self.mobileShow = false
+      } else {
+        self.navClassObject.mobile = false
+        self.mobileShow = true
       }
     })
   }
@@ -115,137 +109,121 @@ export default {
 <style lang="sass" scoped>
 @import 'config'
 
-$height: 60px
+$height: 70px
 
-nav
+.nav
   position: fixed
-  z-index: 9999
+  z-index: 999
   top: 0
   left: 0
   width: 100%
   height: $height
-  line-height: $height
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-
-// Navbar
-.nav
-  margin-right: 30px
-  font-weight: 600
+  background: rgba(#605d5d, 0.4)
+  color: white
   @include transition
-  @include bp-mobile
-    display: none
-  ul
-    text-align: right
-    li
-      display: inline-block
-      a
-        display: block
-        font-size: 23px
-        height: $height - 10px
-        line-height: $height - 10px
-        margin: 0 15px
-        padding: 0 20px
-        border-radius: 6px
-        color: white
-        @include transition
-        @include bp-mobile
-          font-size: 19px
-          padding: 0 8px
-          margin: 0 8px
+  .navbar
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .logo
+      line-height: $height
+      margin-left: 40px
+      font-size: 40px
+      font-weight: bolder
+      font-family: 'Anton', sans-serif
+      @include transition
+    ul
+      display: flex
+      flex-direction: row
+      align-items: center
+      height: $height
+      @include transition
+      li
+        a
+          height: $height - 20
+          font-size: 20px
+          padding: 10px 20px
+          margin-right: 10px
+          color: #eee
+          @include transition
+          &:hover
+            color: white
 
-.mobileNav
+.shrunk
+  height: $height - 30
+  .navbar
+    .logo
+      line-height: $height - 30
+      margin-left: 10px
+      font-size: 20px
+    ul
+      display: flex
+      flex-direction: row
+      align-items: center
+      height: $height - 30
+      li
+        a
+          height: $height - 20 - 30
+          font-size: 15px
+          padding: 5px 10px
+          margin-right: 5px
+
+.mobile
   position: fixed
+  z-index: 999
   top: 0
   left: 0
   width: 100%
-  margin: auto
-  font-weight: 600
-  display: none
-  @include bp-mobile
+  height: $height
+  background: transparent
+  color: white
+  @include transition
+  .navbar
     display: block
-  ul
-    text-align: center
-    background: rgba(#0d8307, 0.9)
-    li
-      display: block
-      a
-        display: block
-        font-size: 23px
-        height: 60px
-        line-height: 60px
-        margin: 0 15px
-        padding: 0 20px
-        border-radius: 6px
-        color: white
+    .logo
+      line-height: $height
+      margin-left: 10px
+      font-size: 30px
+      font-weight: bolder
+      font-family: 'Anton', sans-serif
+      color: #299058
+      @include transition
+    ul
+      position: fixed
+      top: 0
+      left: 0
+      width: 100%
+      flex-direction: column
+      @include transition
+      li
+        width: 100%
+        a
+          display: block
+          width: 100%
+          font-size: 20px
+          padding: 10px 20px
+          background: rgba(#028518, 0.8)
+          color: #c9c9c9
+          @include transition
+          &:hover
+            color: white
+        .router-link-exact-active
+          background: rgba(#26a33b, 0.8)
+          border-radius: 0
+          color: white !important
 
-.collapseNav
-  margin-right: 10px
-  font-weight: 600
-  width: 100%
-  background: green
-  background: rgba(#383838, 0.3)
-  @include transition
-  ul
-    text-align: right
-    li
-      display: inline-block
-      a
-        display: block
-        font-size: 18px
-        height: $height - 20px
-        line-height: $height - 20px
-        margin: 0 10px
-        padding: 0 10px
-        border-radius: 6px
-        color: white
-        @include transition
-        @include bp-mobile
-          font-size: 17px
-          padding: 0 8px
-          margin: 0 8px
+.mobileShow
+  display: flex !important
 
-// Brand Logo
-.logo
-  padding-left: 30px
-  font-family: 'Anton', sans-serif
-  font-size: 48px
-  letter-spacing: 1px
-  color: white
-  @include transition
-  @include bp-mobile
-    font-size: 38px
-.mobileLogo
-  position: fixed
-  z-index: -1
-  padding-left: 10px
-  font-family: 'Anton', sans-serif
-  font-size: 28px
-  letter-spacing: 1px
-  color: white
-.collapseLogo
-  padding-left: 10px
-  background: rgba(#383838, 0.3)
-  font-family: 'Anton', sans-serif
-  font-size: 28px
-  letter-spacing: 1px
-  color: white
-  @include transition
-  @include bp-mobile
-    font-size: 28px
-    background: none
-    text-shadow: 0 0 15px #444
-
-.onHover
-  transform: translateY(5px)
-  background: white
-  color: black !important
-  @include transition
+.mobileHide
+  display: none !important
 
 .router-link-exact-active
   background: white
+  border-radius: 5px
   color: black !important
+  &:hover
+    background: #eee
 
 .hamburger
   position: fixed
@@ -253,13 +231,9 @@ nav
   right: 10px
   width: 70px
   height: 70px
-  display: none
-  @include bp-mobile
-    display: block
 
-.mobileNav-enter-active, .mobileNav-leave-active
-  transition: transform 1s
-.mobileNav-enter, .mobileNav-leave-to
-  transform: translateY(-100%)
-
+.v-enter-active, .v-leave-active
+  transition: 1s
+.v-enter, .v-leave-to
+  transform: scale(0)
 </style>
