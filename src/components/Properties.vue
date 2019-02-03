@@ -2,6 +2,7 @@
   <div>
     <div class="container">
       <h2 class="titleBK">Our <span>Properties</span></h2>
+      <hr>
       <div class="info">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -10,6 +11,7 @@
       <div class="properties">
         <div class="item" v-for="(prop, index) in properties" :key='index'>
           <img :src="'static/images/' + prop.image">
+          <h2>{{ prop.name }}</h2>
           <div class="itemInfo">
             {{ prop.info }}{{prop.active}}
           </div>
@@ -50,7 +52,7 @@ export default {
           active: false
         },
         {
-          name: 'Orchid House',
+          name: 'Orchard House',
           image: 'prop2.jpg',
           imageAlt: 'Photo by Benji Mellish from Pexels',
           info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -68,6 +70,20 @@ export default {
           image: 'prop4.jpg',
           imageAlt: '',
           info: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          active: false
+        },
+        {
+          name: 'Orchid mansion',
+          image: 'prop5.jpg',
+          imageAlt: '',
+          info: 'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+          active: false
+        },
+        {
+          name: 'Crossroads Cottage',
+          image: 'prop6.jpg',
+          imageAlt: '',
+          info: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           active: false
         }
       ]
@@ -90,9 +106,6 @@ export default {
 .info
   margin: 30px auto
 
-.titleBK
-  font-size: 38px
-
 .properties
   display: flex
   flex-direction: row
@@ -100,22 +113,22 @@ export default {
   justify-content: space-around
   .item
     position: relative
-    width: 300px
-    padding: 10px
-    margin: 10px
-    border: 1px solid #bbb
-    border-radius: 4px
+    width: 30%
+    margin: 20px 5px
     @include bp-mobile
-      margin: 5px
+      width: 40%
     @include bp-mobileSM
       width: 100%
     img
       width: 100%
+    h2
+      text-align: center
+      margin: 10px 0
     .itemInfo
       margin: 10px 0
       margin-bottom: 100px
-      font-weight: 200
-      text-indent: 30px
+      font-weight: 400
+      text-align: center
     button
       position: absolute
       bottom: 10px
@@ -140,10 +153,15 @@ export default {
         width: 90%
       .close
         text-align: right
-        font-size: 20px
+        font-size: 28px
+        font-weight: bold
+        color: $orange
         border-bottom: 1px solid $borderCol
         margin-bottom: 15px
         cursor: pointer
+        @include transition
+        &:hover
+          color: $orange - 50
       form
         width: 100%
         padding: 20px 0

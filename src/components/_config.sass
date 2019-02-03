@@ -3,7 +3,7 @@
 
 // MIXINS
 @mixin bp-mobile
-  @media only screen and (max-width: 1050px)
+  @media only screen and (max-width: 1200px)
     @content
 
 @mixin bp-mobileSM
@@ -12,6 +12,9 @@
 
 @mixin transition
   transition: .4s
+
+@mixin border-radius
+  border-radius: 5pc
 
 // Colors
 $orange: #ff9213
@@ -68,7 +71,7 @@ button
   font-size: 19px
   letter-spacing: 2px
   border: none
-  border-radius: 30px
+  border-radius: 40px
   transition: .3s
   &:hover
     background: $blue
@@ -77,6 +80,7 @@ button
   color: black
   text-align: center
   margin: 60px 0
+  font-size: 42px
   span
     color: $orange
 .titleWT
@@ -86,3 +90,31 @@ button
 .info
   p
     text-indent: 30px
+
+hr
+  border: none
+  border-bottom: 4px solid $orange
+  width: 150px
+  margin: auto
+  margin-bottom: 60px
+
+.row
+  @mixin padding
+    padding: 20px
+
+  display: flex
+  align-items: center
+  @include bp-mobileSM
+    display: block
+  .col8
+    flex: 8
+    @include padding
+  .col4
+    flex: 4
+    @include padding
+  .col9
+    flex: 9
+    @include padding
+  .col3
+    flex: 3
+    @include padding

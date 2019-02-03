@@ -144,10 +144,11 @@ $height: 70px
           font-size: 20px
           padding: 10px 20px
           margin-right: 10px
-          color: #eee
+          color: #fff
+          @include border-radius
           @include transition
           &:hover
-            color: white
+            background: $orange !important
 
 .shrunk
   height: $height - 30
@@ -198,12 +199,17 @@ $height: 70px
       li
         width: 100%
         a
+          $height: 80px
           display: block
           width: 100%
-          font-size: 20px
-          padding: 10px 20px
+          height: $height
+          line-height: $height
+          font-size: 1.8em
+          padding: 0
+          padding-left: 40px
           background: rgba(#028518, 0.8)
           color: #c9c9c9
+          border-radius: 0 !important
           @include transition
           &:hover
             color: white
@@ -220,10 +226,9 @@ $height: 70px
 
 .router-link-exact-active
   background: white
-  border-radius: 5px
   color: black !important
   &:hover
-    background: #eee
+    color: white !important
 
 .hamburger
   position: fixed
