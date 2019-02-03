@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import AnimatedVue from 'animated-vue'
+
+Vue.use(AnimatedVue)
 
 Vue.config.productionTip = false
 

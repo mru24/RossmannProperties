@@ -62,9 +62,10 @@ export default {
     width: 100%
     z-index: 999
     background-image: url("../assets/footer.jpg")
-    background-position: top right
+    background-position: top
     background-repeat: no-repeat
     background-size: cover
+    background-attachment: fixed
     &::after
       position: absolute
       top: -58px

@@ -2,15 +2,11 @@
   <div>
     <div class="banner">
       <h1>FIND YOUR DREAM HOME</h1>
-      <router-link :to="'about'">
-        <button>
-          View More
-        </button>
-      </router-link>
     </div>
     <div class="container">
       <Properties />
     </div>
+
     <div class="info_space">
       <div class="container">
         <h2 class="titleWT">More than 20 years' <span>experience</span></h2>
