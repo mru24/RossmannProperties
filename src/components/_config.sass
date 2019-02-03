@@ -61,7 +61,9 @@ body
 a, a:active, a:visited
   text-decoration: none
   color: inherit
-
+  @include transition
+a:hover
+  border-bottom: 1px solid $orange
 p
   font-size: 1.6em
   line-height: 1.5

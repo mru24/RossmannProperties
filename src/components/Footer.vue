@@ -119,10 +119,10 @@ export default {
               animation: jump 3s
 
 @keyframes jump
-	0%,30%,80%,100%
+  0%,30%,80%,100%
     transform: translateY(0)
-	10%
+  10%
     transform: translateY(-20px)
-	60%
+  60%
     transform: translateY(-10px)
 </style>

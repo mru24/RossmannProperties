@@ -52,11 +52,6 @@ export default {
           name: 'Contact',
           link: 'contact',
           hover: false
-        },
-        {
-          name: 'Login',
-          link: 'login',
-          hover: false
         }
       ]
     }

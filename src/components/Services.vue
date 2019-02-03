@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="banner">
-      <!-- Photo by rawpixel.com from Pexels -->
       <h1>What we can do for you ...</h1>
     </div>
     <div class="container">
@@ -92,6 +91,7 @@ export default {
       margin: 40px
       padding: 25px
       background: #07b5c1
+      box-shadow: 0 0 15px #999
       color: white
       h1
         margin-bottom: 20px
