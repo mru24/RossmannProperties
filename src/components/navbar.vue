@@ -204,7 +204,7 @@ $height: 70px
           width: 100%
           height: $height
           line-height: $height
-          font-size: 1.8em
+          font-size: 1.5em
           padding: 0
           padding-left: 40px
           background: rgba(#028518, 0.8)

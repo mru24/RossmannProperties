@@ -98,10 +98,11 @@ hr
   margin: auto
   margin-bottom: 60px
 
-.row
-  @mixin padding
-    padding: 20px
+@mixin padding
+  padding: 20px
 
+.row
+  width: 100%
   display: flex
   align-items: center
   @include bp-mobileSM
@@ -118,3 +119,9 @@ hr
   .col3
     flex: 3
     @include padding
+  .col6
+    flex: 1
+    @include padding
+
+.text-center
+  text-align: center

@@ -164,6 +164,8 @@ export default {
         height: 300px
         position: relative
         overflow-y: scroll
+        border: 1px solid #d5d5d5
+        background: #fafafa
         li
           width: 100%
           height: auto
@@ -179,5 +181,6 @@ export default {
             font-size: 1.4em
             text-align: center
 footer
-  height: 400px
+  // height: 180vh
+  background: #393939
 </style>
