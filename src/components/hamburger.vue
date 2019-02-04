@@ -44,6 +44,7 @@ export default {
 
 <style lang="sass" scoped>
 @import 'config'
+
 $rotate1: 135deg
 $rotate3: 45deg
 .burger

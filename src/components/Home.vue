@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../components/config'
+@import 'config'
 
 .banner
   background-image: url('../assets/bannerImage.jpg')

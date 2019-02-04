@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../components/config'
+@import 'config'
 
 .info
   margin: 30px auto

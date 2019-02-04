@@ -14,8 +14,8 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
-@import './components/config'
+// @import './components/config'
 
 </style>

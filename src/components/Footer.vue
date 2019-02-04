@@ -50,8 +50,9 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import 'config'
+
 .footerContainer
   margin-top: 100px
   position: relative
